@@ -1,17 +1,17 @@
 import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import css from './ContactsForm.module.css';
-import shortid from 'shortid';
 
 export const ContactsForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
+    e.preventDefault();
     const contact = {
-      id: shortid(),
       name: e.currentTarget.name.value,
       number: e.currentTarget.number.value,
     };
+
     if (contact !== '') {
       dispatch(addContact(contact));
       e.currentTarget.reset();
